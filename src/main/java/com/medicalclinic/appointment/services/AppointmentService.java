@@ -31,7 +31,7 @@ public class AppointmentService {
 	
 	public AppointmentDTO addAppointment(Appointment appointment) {
 		log.info("Add new appointment");
-		Long patientId = appointment.getPatient().getPatientId();
+		Long patientId = appointment.getPatient().getId();
 		Patient patient = patientService.getPatientById(patientId);
 		Appointment savedAppointment = appointmentRepository.save(appointment);
 		AppointmentDTO appointmentDTO = AppointmentDTO.builder().date(savedAppointment.getDate())
@@ -69,6 +69,27 @@ public class AppointmentService {
 	public List<AppointmentDTO> getAppointmentByPatientFirstName(String patientFirstName) {
 		log.info("Get All appointments for patient={}", patientFirstName);
 		List<Appointment> appointments = appointmentRepository.findAppointmentByPatientFirstName(patientFirstName);
+		List<AppointmentDTO> appointmentDTOs = new ArrayList<AppointmentDTO>();
+		 for(Appointment appointment: appointments) {
+			 AppointmentDTO appointmentDTO = AppointmentDTO.builder().date(appointment.getDate())
+					    .time(appointment.getTime())
+						.patientFirstName(appointment.getPatient().getFirstName())
+						.patientLastName(appointment.getPatient().getLastName())
+						.patientAge(appointment.getPatient().getAge())
+						.patientPhone1(appointment.getPatient().getPhone1())
+						.patientPhone2(appointment.getPatient().getPhone2())
+						.isCanceled(appointment.getIsCanceled())
+						.reason(appointment.getReason())
+						.build();
+			 appointmentDTOs.add(appointmentDTO);
+		 }
+		 
+		 return appointmentDTOs;
+	}
+	
+	public List<AppointmentDTO> getAppointmentByPatientId(Long patientId) {
+		log.info("Get All appointments for patient={}", patientId);
+		List<Appointment> appointments = appointmentRepository.findAppointmentByPatientId(patientId);
 		List<AppointmentDTO> appointmentDTOs = new ArrayList<AppointmentDTO>();
 		 for(Appointment appointment: appointments) {
 			 AppointmentDTO appointmentDTO = AppointmentDTO.builder().date(appointment.getDate())

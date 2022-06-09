@@ -63,6 +63,13 @@ public class AppointmentController {
 		return new ResponseEntity<List<AppointmentDTO>>(appointments, HttpStatus.OK);
 	}
 	
+	@GetMapping("/getAllAppointmentsByPatientId/{patientId}")
+	public ResponseEntity<List<AppointmentDTO>> getAllAppointmentsByPatientName(@PathVariable("patientId") Long patientId) {
+		log.info("AppointmentController - addAppointment(): filter appointments by patient Id: {}", patientId);
+		List<AppointmentDTO> appointments = appointmentService.getAppointmentByPatientId(patientId);
+		return new ResponseEntity<List<AppointmentDTO>>(appointments, HttpStatus.OK);
+	}
+	
 	@GetMapping("/getAllAppointmentsByDate")
 	public ResponseEntity<List<AppointmentDTO>> getAllAppointmentsByPatientDate(@RequestParam("date") Date date) {
 		log.info("AppointmentController - addAppointment(): filter appointments by date: {}", date);

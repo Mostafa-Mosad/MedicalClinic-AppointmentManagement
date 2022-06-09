@@ -8,7 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
-import org.aspectj.weaver.tools.Trace;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
