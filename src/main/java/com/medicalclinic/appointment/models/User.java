@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
+import org.aspectj.weaver.tools.Trace;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -32,15 +34,15 @@ public class User {
 	@NotBlank(message = "Last name is required")
 	private String lastName;
 	
-	@Column(name = "email")
+	@Column(name = "email", unique = true)
 	@NotBlank(message = "Email is required")
 	private String email;
 	
-	@Column(name = "phone_1")
+	@Column(name = "phone_1", unique = true)
 	@NotBlank(message = "Phone is required")
 	private String phone1;
 	
-	@Column(name = "phone_2")
+	@Column(name = "phone_2", unique = true)
 	private String phone2;
 	
 	@Column(name = "role")

@@ -41,11 +41,11 @@ public class Patient {
 	@Column(name = "age")
 	private int age;
 	
-	@Column(name = "phone_1")
+	@Column(name = "phone_1", unique = true)
 	@NotBlank(message = "Phone is required")
 	private String phone1;
 	
-	@Column(name = "phone_2")
+	@Column(name = "phone_2", unique = true)
 	private String phone2;
 	
 	@JsonIgnore
