@@ -13,7 +13,7 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long>{
 	
 	List<Appointment> findAppointmentByPatientFirstName(String patientFirstName);
 	
-	@Query(value="select * from Appointment where appointment_date >= :date", nativeQuery = true)
+	@Query(value="select * from Appointment where appointment_date = :date", nativeQuery = true)
 	List<Appointment> findByDate(@Param("date") Date date);
 	
 	List<Appointment> findAppointmentByPatientId(Long patientId);
