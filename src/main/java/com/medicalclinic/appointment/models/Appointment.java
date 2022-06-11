@@ -33,7 +33,7 @@ public class Appointment {
 	private Long id;
 	
 	@Column(name = "appointment_date")
-	@JsonFormat(pattern = "yyyy/MM/dd")
+	@JsonFormat(pattern = "yyyy-MM-dd hh:MM:ss")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date date;
 	
